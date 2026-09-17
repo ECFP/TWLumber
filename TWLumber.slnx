@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/TWLumber.Client.Sample/TWLumber.Client.Sample.csproj" />
+    <Project Path="src/TWLumber.Client/TWLumber.Client.csproj" />
+  </Folder>
+</Solution>
