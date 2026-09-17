@@ -7,9 +7,9 @@ public sealed class TWClientOptions
 {
     /// <summary>
     /// Controls what happens when a single "include sale items" call needs to look up more than
-    /// <see cref="SaleItemsBatchLimitException.DefaultLimit"/> distinct sales orders.
+    /// <see cref="Exceptions.SaleItemsBatchLimitException.DefaultLimit"/> distinct sales orders.
     /// <para>
-    /// When <c>false</c> (the default) the call throws <see cref="SaleItemsBatchLimitException"/>
+    /// When <c>false</c> (the default) the call throws <see cref="Exceptions.SaleItemsBatchLimitException"/>
     /// before running, so an accidentally broad query is surfaced early rather than silently
     /// loading a very large dataset.
     /// </para>

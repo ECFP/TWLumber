@@ -1,4 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
+using TWLumber.Client;
+using TWLumber.Client.Data;
+using TWLumber.Client.Models;
 
 namespace TWLumber.Client;
 
@@ -11,6 +14,10 @@ public sealed class TWClient
 {
     private readonly TWClientOptions _options;
     private readonly string _connectionString;
+    private SalesRepository? _sales;
+    private SaleItemsRepository? _saleItems;
+    private SaleItemDetailsRepository? _saleItemDetails;
+    private TransfersRepository? _transfers;
 
     /// <summary>
     /// Creates a new <see cref="TWClient"/> from the supplied options.
@@ -29,7 +36,8 @@ public sealed class TWClient
     /// Creates a new <see cref="TWClient"/> using a connection string and default options.
     /// </summary>
     /// <param name="connectionString">The connection string to the Tallyworks database.</param>
-    public TWClient(string connectionString) : this(new TWClientOptions { ConnectionString = connectionString })
+    public TWClient(string connectionString)
+        : this(new TWClientOptions { ConnectionString = connectionString })
     {
     }
 
@@ -43,6 +51,27 @@ public sealed class TWClient
     /// See <see cref="TWClientOptions.AllowLargeIncludeQueries"/>.
     /// </summary>
     internal bool AllowLargeIncludeQueries => _options.AllowLargeIncludeQueries;
+
+    /// <summary>
+    /// Access to <see cref="Sale"/> data in the Tallyworks database.
+    /// </summary>
+    public SalesRepository Sales => _sales ??= new SalesRepository(this);
+
+    /// <summary>
+    /// Access to <see cref="SaleItem"/> data in the Tallyworks database.
+    /// </summary>
+    public SaleItemsRepository SaleItems => _saleItems ??= new SaleItemsRepository(this);
+
+    /// <summary>
+    /// Internal access to <see cref="SaleItemDetail"/> data. Details are exposed to callers only
+    /// as <see cref="SaleItem.SaleItemDetails"/>, so this is not part of the public surface.
+    /// </summary>
+    internal SaleItemDetailsRepository SaleItemDetails => _saleItemDetails ??= new SaleItemDetailsRepository(this);
+
+    /// <summary>
+    /// Access to <see cref="Transfer"/> data in the Tallyworks database.
+    /// </summary>
+    public TransfersRepository Transfers => _transfers ??= new TransfersRepository(this);
 
     /// <summary>
     /// Opens and verifies a connection to the database.

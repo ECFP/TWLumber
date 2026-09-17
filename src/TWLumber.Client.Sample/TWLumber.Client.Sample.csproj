@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TWLumber.Client\TWLumber.Client.csproj" />
+  </ItemGroup>
+
 </Project>

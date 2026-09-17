@@ -4,7 +4,38 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <!-- NuGet package metadata -->
+  <PropertyGroup>
+    <PackageId>TWLumber.Client</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Steve Roe</Authors>
+    <Company>Elk Creek Forest Products</Company>
+    <Copyright>© Elk Creek Forest Products. All rights reserved.</Copyright>
+    <Description>A lightweight .NET client for managing data from a Legna TallyWorks lumber database (Microsoft SQL Server) through strongly-typed models, without raw SQL or an ORM. Independent project; not produced or endorsed by Legna Software.</Description>
+    <PackageTags>tallyworks;legna;lumber;sawmill;erp;sqlserver</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/ECFP/TWLumber</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ECFP/TWLumber.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Title>TWLumber.Client</Title>
+  </PropertyGroup>
+
+  <!-- Deterministic paths for CI builds (e.g. GitHub Actions sets GITHUB_ACTIONS=true) -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.3" />
